@@ -152,7 +152,7 @@ class Play extends Phaser.Scene {
         
         this.starfield.tilePositionX -= 4;
         if(!this.gameOver){
-            this.timeRight.setText(Math.floor(this.timeVariable-this.clock.getElapsed()));
+            this.timeRight.setText(Math.floor((this.timeVariable-this.clock.getElapsed())/1000));
             this.checkFire(this.p1Rocket);
             this.p1Rocket.update();
             this.ship1.update();
