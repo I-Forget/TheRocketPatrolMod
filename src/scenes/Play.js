@@ -130,6 +130,21 @@ class Play extends Phaser.Scene {
         }        
         this.timeRight = this.add.text(borderUISize* 15 + borderPadding*2, borderUISize + borderPadding*2, this.timeVariable, timeConfig);
         timeConfig.fixedWidth = 0;
+    
+        let fireConfig = {
+            fontFamily: 'Courier',
+            fontsize: '34px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100 
+        }
+        this.fireCenter = this.add.text(borderUISize*8 + borderPadding*2, borderUISize + borderPadding*2, "F I R E!", fireConfig);
+    
     }
 
     update() {
