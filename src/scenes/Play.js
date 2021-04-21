@@ -52,16 +52,17 @@ class Play extends Phaser.Scene {
             0,
             10 
         ).setOrigin(0,0);
-
-        this.supership = new Supership(
-            this,
-            game.config.width + borderUISize*7,
-            borderUISize*5 +borderPadding*2,
+        
+        this.ship4 = new Ship(
+            this, 
+            game.config.width + borderUISize *7,
+            borderUISize*5 + borderPadding*2,
             'spaceship',
             0,
-            50
+            60
         ).setOrigin(0,0);
-        
+
+        this.ship4.moveSpeed = game.settings.spaceshipSpeed*2;
             // Green rectangle thing
         this.add.rectangle(
             0, 
@@ -157,11 +158,11 @@ class Play extends Phaser.Scene {
             this.ship1.update();
             this.ship2.update();
             this.ship3.update();
-            this.supership.update();
+            this.ship4.update();
             this.checkCollision(this.p1Rocket, this.ship1);
             this.checkCollision(this.p1Rocket, this.ship2);
             this.checkCollision(this.p1Rocket, this.ship3);
-            this.checkSuperCollision(this.p1Rocket, this.supership);
+            this.checkCollision(this.p1Rocket, this.ship4);
         }
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
             this.scene.restart();
@@ -186,16 +187,6 @@ class Play extends Phaser.Scene {
         }
     }
 
-    checkSuperCollision(rocket, supership){
-        if( rocket.x + rocket.width > supership.x &&
-            rocket.x < supership.x + supership.width &&
-            rocket.y + rocket.height > supership.y &&
-            rocket.y < supership.y + supership.height){
-                rocket.reset();
-                this.superShipExplode(supership);
-        }
-    }
-
     shipExplode(ship) {
         ship.alpha = 0; // invisible ship is now on the explode
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
@@ -207,18 +198,5 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
         this.sound.play('sfx_explosion');
-    }   
-    
-    superShipExplode(supership) {
-        supership.alpha = 0;
-        let boom = this.add.sprite(supership.x, supership.y, 'explosion').setOrigin(0,0);
-        boom.anims.play('explode');
-        boom.on('animationcomplete', () => {
-            supership.reset(); 
-            boom.destroy();
-        })
-        this.p1Score += supership.points;
-        this.scoreLeft.text = this.p1Score;
-        this.sound.play('sfx_explosion');
-    }  
+    }    
 }
