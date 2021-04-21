@@ -141,9 +141,9 @@ class Play extends Phaser.Scene {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 100 
+            fixedWidth: 120 
         }
-        this.fireCenter = this.add.text(borderUISize*8 + borderPadding*2, borderUISize + borderPadding*2, "F I R E!", fireConfig);
+        this.fireCenter = this.add.text(borderUISize*8 + borderPadding*2, borderUISize + borderPadding*2, "R E A D Y!", fireConfig);
     
     }
 
@@ -152,6 +152,7 @@ class Play extends Phaser.Scene {
         this.starfield.tilePositionX -= 4;
         if(!this.gameOver){
             this.timeRight.setText(Math.floor(this.timeVariable-this.clock.getElapsed()));
+            this.checkFire(this.p1Rocket);
             this.p1Rocket.update();
             this.ship1.update();
             this.ship2.update();
@@ -164,6 +165,14 @@ class Play extends Phaser.Scene {
         }
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
             this.scene.restart();
+        }
+    }
+
+    checkFire(rocket){
+        if(rocket.isFiring){
+            this.fireCenter.text = "F I R E!";
+        }else{
+            this.fireCenter.text = "R E A D Y!";
         }
     }
 
