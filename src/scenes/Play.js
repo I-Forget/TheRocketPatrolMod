@@ -151,6 +151,7 @@ class Play extends Phaser.Scene {
         
         this.starfield.tilePositionX -= 4;
         if(!this.gameOver){
+            this.timeRight.setText(Math.floor(this.timeVariable-this.clock.getElapsed()));
             this.p1Rocket.update();
             this.ship1.update();
             this.ship2.update();
@@ -200,7 +201,7 @@ class Play extends Phaser.Scene {
     }   
     
     superShipExplode(supership) {
-        supership.alpha = 0; // invisible ship is now on the explode
+        supership.alpha = 0;
         let boom = this.add.sprite(supership.x, supership.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode');
         boom.on('animationcomplete', () => {
