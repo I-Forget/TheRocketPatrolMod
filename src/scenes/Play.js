@@ -15,6 +15,11 @@ class Play extends Phaser.Scene {
         this.load.audio('sfx_select', 'assets/blip_select12.wav');
         this.load.audio('sfx_explosion', 'assets/explosion38.wav');
         this.load.audio('sfx_rocket', 'assets/rocket_shot.wav');
+        this.load.audio('sfx_explosion1', 'assets/RPModexplosion1.wav');
+        this.load.audio('sfx_explosion2', 'assets/RPModexplosion2.wav');
+        this.load.audio('sfx_explosion3', 'assets/RPModexplosion3.wav');
+        this.load.audio('sfx_explosion4', 'assets/RPModexplosion4.wav');
+        this.load.audio('bgm', 'assets/RPModBGMalt.wav');
     }
 
     create() {
@@ -145,7 +150,19 @@ class Play extends Phaser.Scene {
             fixedWidth: 120 
         }
         this.fireCenter = this.add.text(borderUISize*8 + borderPadding*2, borderUISize + borderPadding*2, "R E A D Y!", fireConfig);
-    
+        
+        let bgmConfig = {
+            mute: false,
+            volume: 1,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0,
+            pan: 0
+        }
+
+        this.sound.play('bgm', bgmConfig);
     }
 
     update() {
@@ -163,6 +180,9 @@ class Play extends Phaser.Scene {
             this.checkCollision(this.p1Rocket, this.ship2);
             this.checkCollision(this.p1Rocket, this.ship3);
             this.checkCollision(this.p1Rocket, this.ship4);
+        }
+        if(this.gameOver){
+            this.sound.stopAll();
         }
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
             this.scene.restart();
@@ -197,6 +217,15 @@ class Play extends Phaser.Scene {
         })
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
-        this.sound.play('sfx_explosion');
+        switch(Math.floor(Math.random()* 4)){
+            case 0:
+                this.sound.play('sfx_explosion1');
+            case 1:
+                this.sound.play('sfx_explosion2');
+            case 2:
+                this.sound.play('sfx_explosion3');
+            case 3:
+                this.sound.play('sfx_explosion4');
+        }
     }    
 }
