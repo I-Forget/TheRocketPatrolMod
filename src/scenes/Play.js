@@ -108,12 +108,28 @@ class Play extends Phaser.Scene {
         this.gameOver = false;
 
         scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(60000, () => {
+        this.timeVariable = 6000;
+
+        this.clock = this.time.delayedCall(6000, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 +64, 'Press (R) to Restart', scoreConfig).setOrigin(0.5);
             this.gameOver = true; 
         }, null, this);
 
+        let timeConfig = {
+            fontFamily: 'Courier',
+            fontsize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }        
+        this.timeRight = this.add.text(borderUISize* 15 + borderPadding*2, borderUISize + borderPadding*2, this.timeVariable, timeConfig);
+        timeConfig.fixedWidth = 0;
     }
 
     update() {
