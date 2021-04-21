@@ -19,6 +19,8 @@ class Rocket extends Phaser.GameObjects.Sprite {
             if(this.y < borderUISize * 3){
                 this.reset();
             }
+
+            this.x = Phaser.Math.Clamp(this.x, borderUISize + borderPadding, game.config.width-borderUISize-borderPadding);
         } else {
             if(keyLEFT.isDown) {
                 this.x -= this.movementSpeed;
