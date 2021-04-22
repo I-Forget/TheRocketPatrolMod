@@ -1,0 +1,15 @@
+name: Bailey Victorio
+Project title: Rocket Patrol Readme
+Date: 4/21/2021
+estimated time: 12 hours of attempt
+time of turn in on canvas: 4/21/2021 7:45pm LATER THAN LATE
+
+points breakdown:
+randomized ship movement (did not change the collision of ships to avoid overlapping)
+control rocket after firing(allowed movement)
+created new art assets for background, ships, rocket, and animation
+create new ship type that flies faster, has more points, and is smaller
+fire text appears when firing(modified to say fire when firing and ready when standby)
+randomized explosion sfxs
+created background music to play
+displayed the remaining time left on the screen in seconds.
