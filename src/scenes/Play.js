@@ -8,9 +8,10 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('rocket', 'assets/rocket.png');
-        this.load.image('spaceship', 'assets/spaceship.png');
+        this.load.image('rocket', 'assets/RPModrocket.png');
+        this.load.image('spaceship', 'assets/RPModship.png');
         this.load.image('starfield', 'assets/starfield.png');
+        this.load.image('smallship', 'assets/RPModsmallship.png');
         this.load.spritesheet('explosion', 'assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9}); 
         this.load.audio('sfx_select', 'assets/blip_select12.wav');
         this.load.audio('sfx_explosion', 'assets/explosion38.wav');
@@ -62,7 +63,7 @@ class Play extends Phaser.Scene {
             this, 
             game.config.width + borderUISize *7,
             borderUISize*5 + borderPadding*2,
-            'spaceship',
+            'smallship',
             0,
             60
         ).setOrigin(0,0);
